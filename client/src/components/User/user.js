@@ -1,8 +1,13 @@
-import React from 'react'
-
+import React, { useContext } from 'react'
+import { UserContext } from '../../context/Context'
+import './user.css'
+import UserNavbar from './userNavbar'
 function User() {
-  return (
-    <div>user</div>
+  const {name} = useContext(UserContext)
+  return (<>
+  <UserNavbar />
+    <h1 className='greet'>Hello {name}</h1>
+  </>
   )
 }
 
