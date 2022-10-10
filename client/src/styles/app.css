@@ -1,6 +1,9 @@
-body{
+/* body{
 background-image:url(https://media.gettyimages.com/illustrations/sport-background-illustration-id164554023);
 background-repeat: no-repeat;
 background-size: cover;
 background-attachment: fixed;
+} */
+body{
+    overflow: hidden;
 }

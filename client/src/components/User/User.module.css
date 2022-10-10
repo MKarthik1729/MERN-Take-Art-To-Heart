@@ -1,0 +1,152 @@
+.card {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.flex {
+  display: flex;
+}
+.verNav {
+  margin: 20px;
+  width: 20vw;
+  height: 33vh;
+}
+.list {
+  list-style: none;
+  padding-top: 2%;
+  font-size: 1.2rem;
+}
+.dashHead {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+}
+.dashHead:hover {
+  background-color: rgb(118, 200, 228);
+  cursor: pointer;
+  transition: 0.4s ease-in;
+}
+.dashTitle{
+  display: flex;
+  margin: 10px 0;
+}
+.imageSizing {
+  height: 3.5vh;
+  width: 10%;
+}
+.dashItem {
+  padding: 4%;
+  font-family: sans-serif;
+  padding-left: 20%;
+}
+.dashActive {
+  background-color: rgba(199, 18, 199, 0.7);
+}
+.dashItem:hover {
+  background-color: rgb(118, 200, 228);
+  cursor: pointer;
+}
+.empty {
+  height: fit-content;
+  width: 10%;
+  background-color: white;
+  margin-left: 2%;
+  margin-right: 4%;
+  border: dashed 1px black;
+}
+.profile {
+  height: 40vh;
+  background-image: url("https://wallpaperaccess.com/full/286175.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+  position: relative;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+.profile .options {
+  position: absolute;
+  bottom: 0;
+}
+.banner {
+  width: 100%;
+}
+.options {
+  display: flex;
+  list-style: none;
+  color: black;
+  background-color: rgba(9, 171, 247, 0.8);
+  width: 100%;
+  height: fit-content;
+  justify-content: center;
+  margin-top: 31%;
+}
+.item {
+  margin-left: 2%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  opacity: 1;
+  border-radius: 5px;
+  height: fit-content;
+  width: fit-content;
+  font-weight: 1000;
+  padding: 0 1%;
+}
+.item:hover {
+  background-color: rgba(255, 255, 255);
+  cursor: pointer;
+  border-radius: 0%;
+  transition: 0.4s ease-in;
+}
+.cardSize {
+  width: 25%;
+}
+.cardImage {
+  height: 45vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.cardEffects:hover {
+  box-shadow: rgba(252, 34, 34, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -2px, 0px);
+  cursor: pointer;
+}
+.dashImg{
+  height: 10vh;
+  border-radius: 50%;
+}
+.name {
+  padding: 1%;
+  margin-top: 1%;
+  font-size: 2rem;
+}
+.dashContents {
+  padding: 1%;
+  margin-left: 1%;
+  width: 40%;
+}
+.conHead {
+  font-size: 1.2rem;
+  font-weight: 500;
+  align-items: center;
+  color: rgb(33, 132, 245);
+  margin: 0;
+}
+.conBody {
+  font-size: 1.2rem;
+  align-items: center;
+  font-weight: 400;
+  margin: 0;
+  margin-left: 1%;
+}
+.icon-sizing {
+  height: 7vh;
+  width: 7vh;
+  cursor: pointer;
+  position: relative;
+  bottom: 8px;
+  right: 10px;
+  margin-left: 95%;
+}
