@@ -22,27 +22,37 @@ function SideNavBar(props) {
     <div className={`${styles.card} ${styles.verNav}`}>
       <div className={styles.list}>
         <div
-          className={`${styles.flex} ${styles.dashItem} ${styles.dashActive}`}
+          className={`${styles.flex} ${styles.dashItem} ${
+            props.curr === "dash" ? styles.dashActive : ""
+          }`}
           id="dash-nav"
           onClick={dashHandler}
         >
           Dashboard
         </div>
         <div
-          className={`${styles.flex} ${styles.dashItem}`}
+          className={`${styles.flex} ${styles.dashItem} ${
+            props.curr === "str" ? styles.dashActive : ""
+          }`}
           id="str-nav"
           onClick={dashHandler}
         >
           Storage
         </div>
         <div
-          className={`${styles.flex} ${styles.dashItem}`}
+          className={`${styles.flex} ${styles.dashItem} ${
+            props.curr === "save" ? styles.dashActive : ""
+          }`}
           id="save-nav"
           onClick={dashHandler}
         >
           Saved Arts
         </div>
-        <div className={`${styles.flex} ${styles.dashItem}`}>
+        <div
+          className={`${styles.flex} ${styles.dashItem} ${
+            props.curr === "auc" ? styles.dashActive : ""
+          }`}
+        >
           Auctioned Items
         </div>
       </div>

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-let userRegister = new Schema({
+let User = new Schema({
 	username: {
 		type: String,
 		required: true,
@@ -33,4 +33,4 @@ let userRegister = new Schema({
 	},
 });
 
-module.exports = mongoose.model("userdata",userRegister);
+module.exports = mongoose.model("User", User);
