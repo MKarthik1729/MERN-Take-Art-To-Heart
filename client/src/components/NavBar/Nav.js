@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -30,16 +30,23 @@ function NavBar() {
             <Nav className={styles.navItem}>
               <Link to="/public">Public</Link>
             </Nav>
-            {(user.role === "admin" || user.role === "auction") && (
-              <Nav className={styles.navItem}>
-                <Link to="/auction">Auction</Link>
-              </Nav>
+            {user.loggedIn && (
+              <Fragment>
+                <Nav className={styles.navItem}>
+                  <Link to="/auction">Auction</Link>
+                </Nav>
+                <Nav className={styles.navItem}>
+                  <Link to="/profile">Profile</Link>
+                </Nav>
+              </Fragment>
             )}
-            <Nav className={styles.navItem}>
-              <Link to="/profile">Profile</Link>
-            </Nav>
           </Nav>
         </Navbar.Collapse>
+        {user.role === "admin" && (
+          <h5 className={styles.admin}>
+            Yo!! You're an admin, Now you have some special access
+          </h5>
+        )}
         <div className={styles.auth}>
           {!user.loggedIn && (
             <div className="d-flex">
@@ -57,11 +64,6 @@ function NavBar() {
             </Nav>
           )}
         </div>
-        {user.role === "admin" && (
-          <h5 className={styles.admin}>
-            Yo!! You're an admin, Now you have some special access
-          </h5>
-        )}
       </Container>
     </Navbar>
   );

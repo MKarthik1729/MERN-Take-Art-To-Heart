@@ -38,7 +38,7 @@ function User() {
     });
   };
 
-  const { name } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <>
@@ -47,7 +47,7 @@ function User() {
         <div className={styles.content}>
           <SideNavBar display={setDisplay} curr={display} />
           <div className={`${styles.empty}`}>
-            {display === "dash" && <DashBoard />}
+            {display === "dash" && <DashBoard user={user.user}/>}
             {display === "str" && <Storage arts={arts} add={addArts}/>}
             {display === "save" && <SavedArts />}
           </div>

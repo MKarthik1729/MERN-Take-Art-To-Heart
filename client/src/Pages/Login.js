@@ -1,9 +1,10 @@
+import axios from "axios";
 import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/Context";
 import { ExclamationCircle } from "react-bootstrap-icons";
+import PopUp from "../components/Modal/PopUp";
 import styles from "./Login.module.css";
-import axios from "axios";
 
 function validateEmail(input) {
   var validRegex =
@@ -32,8 +33,10 @@ function Login() {
     mail: false,
     password: false,
   });
+  const [pop, setPop] = useState(false);
+  const [msg, setMsg] = useState("");
 
-  const { setUser} = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,7 +64,12 @@ function Login() {
               user: res.data.data,
               loggedIn: true,
             });
+            setMsg(res.data.msg);
+            setPop(true);
             navigate("/");
+          } else {
+            setMsg(res.data.msg);
+            setPop(true);
           }
         }
       });
@@ -109,6 +117,7 @@ function Login() {
           </div>
           <button type="submit">Login</button>
         </form>
+        <PopUp state={pop} setState={setPop} msg={msg} />
       </div>
     </div>
   );
