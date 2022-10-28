@@ -2,13 +2,15 @@ import React, { createContext, useState } from "react";
 const UserContext = createContext();
 const UserProvider = (props) => {
   const [user, setUser] = useState({
-    role: "admin",
+    role: "guest",
     user: {
       
-    }
+    },
+    loggedIn: false
   });
+  const [pop, setPop] = useState('');
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, pop, setPop }}>
       {props.children}
     </UserContext.Provider>
   );

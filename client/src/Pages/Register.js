@@ -1,39 +1,53 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
+import { UserContext } from "../context/Context";
+import axios from "axios";
 
 function Register() {
-  const name = useRef();
-  const email = useRef();
-  const pass = useRef();
-  const conPass = useRef();
-  const country = useRef();
-  const dob = useRef();
-  const gender = useRef();
-  const register = useRef();
-
+  const name = useRef(null);
+  const email = useRef(null);
+  const pass = useRef(null);
+  const conPass = useRef(null);
+  const country = useRef(null);
+  const dob = useRef(null);
+  const gender = useRef(null);
+  const register = useRef(null);
   const navigate = useNavigate();
+
+  const { setUser } = useContext(UserContext);
+
   const HandleSubmit = (e) => {
     e.preventDefault();
-    // console.log('submitted')
+
     const sendData = {
       username: name.current.value,
       useremail: email.current.value,
-      password: pass.current.velue,
+      password: pass.current.value,
       country: country.current.value,
       dob: dob.current.value,
       gender: gender.current.value,
       usertype: register.current.value,
+      role: "user",
     };
-    console.log(sendData);
-    navigate("/login");
+    axios.post("/user/register", sendData).then((res) => {
+      if (res.status === 200) {
+        setUser({
+          role: res.data.data.role,
+          user: res.data.data,
+          loggedIn: true,
+        });
+        console.log(res);
+        navigate("/");
+      }
+    });
   };
   return (
     <div className={styles.formContainer}>
       <div className={styles.content}>
-          <h1>Hello, it's a pleasure to meet you.</h1>
-          <h2>Register here </h2>
-        </div>
+        <h1>Hello, it's a pleasure to meet you.</h1>
+        <h2>Register here </h2>
+      </div>
       <form onSubmit={HandleSubmit} className={styles.form}>
         <div className={styles.fields}>
           <label htmlFor="username"> User Name : </label>
@@ -45,13 +59,18 @@ function Register() {
         </div>
         <div className={styles.fields}>
           <label htmlFor="password"> Password : </label>
-          <input id="password" type="text" ref={pass} placeholder="Password" />
+          <input
+            id="password"
+            type="password"
+            ref={pass}
+            placeholder="Password"
+          />
         </div>
         <div className={styles.fields}>
           <label htmlFor="confirm"> Confirm Password : </label>
           <input
             id="confirm"
-            type="text"
+            type="password"
             ref={conPass}
             placeholder="Confirm Password"
           />
@@ -74,11 +93,11 @@ function Register() {
         <div className={styles.fields}>
           <label name="type"> Register as : </label>
           <select name="type" id="type" ref={register}>
-            <option value="buyer">buyer</option>
-            <option value="bidder">bidder</option>
-            <option value="both">Both</option>
+            <option value="artist">Artist</option>
+            <option value="bidder">Bidder</option>
           </select>
         </div>
+        <button>Submit</button>
       </form>
     </div>
   );

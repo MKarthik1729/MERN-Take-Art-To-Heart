@@ -3,14 +3,17 @@ const router = express.Router();
 const userModel = require("../database/User");
 
 router.post("/register", async (req, res) => {
-  userModel
-    .create(req.body)
+  const user = new userModel(req.body);
+  console.log(req.body);
+  user
+    .save()
     .then((data) => {
       res.send(data);
+      console.log(data);
     })
     .catch((err) => {
-      res.send("Error");
       console.log(err);
+      res.send(err);
     });
 });
 router.post("/login", (req, res) => {
@@ -20,10 +23,18 @@ router.post("/login", (req, res) => {
     })
     .then((result) => {
       console.log(result);
-      res.send(result);
+      if (result.password === req.body.password) {
+        res.send({
+          data: result,
+          msg: "Login Success",
+        });
+      } else {
+        res.send({
+          data: null,
+          msg: "Login Failed, Please check your credentials again",
+        });
+      }
     });
 });
-
-
 
 module.exports = router;

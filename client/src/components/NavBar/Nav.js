@@ -1,11 +1,22 @@
+import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/Context";
 import styles from "./Nav.module.css";
 
 function NavBar() {
+  const { user, setUser } = useContext(UserContext);
+
+  const logoutHandler = (e) => {
+    setUser({
+      role: "guest",
+      user: {},
+      loggedIn: false,
+    });
+  };
+
   return (
     <Navbar bg="light" expand="lg" className={styles.sticky}>
       <Container>
@@ -19,25 +30,41 @@ function NavBar() {
             <Nav className={styles.navItem}>
               <Link to="/public">Public</Link>
             </Nav>
-            <Nav className={styles.navItem}>
-              <Link to="/auction">Auction</Link>
-            </Nav>
+            {(user.role === "admin" || user.role === "auction") && (
+              <Nav className={styles.navItem}>
+                <Link to="/auction">Auction</Link>
+              </Nav>
+            )}
             <Nav className={styles.navItem}>
               <Link to="/profile">Profile</Link>
             </Nav>
           </Nav>
         </Navbar.Collapse>
         <div className={styles.auth}>
-          <Nav className={`${styles.navItem} `}>
-            <Link to="/login">Login</Link>
-          </Nav>
-          <Nav className={`${styles.navItem}`}>
-            <Link to="/register">Register</Link>
-          </Nav>
+          {!user.loggedIn && (
+            <div className="d-flex">
+              <Nav className={`${styles.navItem} `}>
+                <Link to="/login">Login</Link>
+              </Nav>
+              <Nav className={`${styles.navItem}`}>
+                <Link to="/register">Register</Link>
+              </Nav>
+            </div>
+          )}
+          {user.loggedIn && (
+            <Nav className={`${styles.navItem} `} onClick={logoutHandler}>
+              <Link to="/">LogOut</Link>
+            </Nav>
+          )}
         </div>
+        {user.role === "admin" && (
+          <h5 className={styles.admin}>
+            Yo!! You're an admin, Now you have some special access
+          </h5>
+        )}
       </Container>
     </Navbar>
-  ); 
+  );
 }
 
 export default NavBar;

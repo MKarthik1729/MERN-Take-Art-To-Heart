@@ -101,7 +101,7 @@
 }
 .side {
   height: fit-content;
-  width: fit-content;
+  width: 15%;
   background-color: white;
   margin: 10px;
   border-radius: 10px;
@@ -130,12 +130,12 @@
   border-bottom: 1px solid black;
   padding: 5px 0;
   transition: 1s ease-out;
+  width: 100%;
   background-color: rgb(239, 239, 239);
 }
 .search:focus {
   border-bottom: none;
 }
-
 .search:hover::placeholder {
   color: black;
 }

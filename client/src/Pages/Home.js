@@ -1,11 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import React, { useContext } from "react";
+import { UserContext } from "../context/Context";
 import Wallpaper from "../components/Wallpaper";
 import styles from "./Home.module.css";
-import { UserContext } from "../context/Context";
+
+axios.defaults.baseURL = "http://localhost:4000";
 
 function Home() {
+  const { user } = useContext(UserContext);
 
-  const {user} = useContext(UserContext);
   console.log(user);
 
   return (
@@ -20,6 +23,11 @@ function Home() {
           <button>Register Now as an Artist</button>
         </div>
         <Wallpaper />
+      </div>
+      <div className={styles.extra}>
+        <div className={styles.extraHeader}>
+          <h2>Explore the Content</h2>
+        </div>
       </div>
     </>
   );

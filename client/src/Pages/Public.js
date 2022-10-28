@@ -31,11 +31,18 @@ const Public = () => {
     });
   };
 
+  const deletePost = (id) => {
+    setPosts((prev) => {
+      let newPosts = prev.filter((post) => post.id !== id);
+      return newPosts;
+    });
+  };
+
   return (
     <div className={styles.public}>
       <div className={`container ${styles.align}`}>
         {posts.map((data) => {
-          return <Post data={data} />;
+          return <Post data={data} delete={deletePost} key={data.id} />;
         })}
       </div>
       <div className={styles.side}>
@@ -55,7 +62,9 @@ const Public = () => {
           </li>
         </ul>
       </div>
-      {post && <PostModal change={setPost} add={addPostHandler} len={posts.length} />}
+      {post && (
+        <PostModal change={setPost} add={addPostHandler} len={posts.length} />
+      )}
     </div>
   );
 };

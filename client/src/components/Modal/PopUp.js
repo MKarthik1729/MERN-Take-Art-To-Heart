@@ -10,21 +10,20 @@ import {
   MDBModalFooter,
 } from 'mdb-react-ui-kit';
 
-export default function PopUp() {
-  const [basicModal, setBasicModal] = useState(false);
+export default function PopUp(props) {
 
-  const toggleShow = () => setBasicModal(!basicModal);
+  const toggleShow = () => props.setState();
 
   return (
     <>
-      <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
+      <MDBModal show={props.state} setShow={props.setState} tabIndex='-1'>
         <MDBModalDialog>
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>Modal title</MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
-            <MDBModalBody>...</MDBModalBody>
+            <MDBModalBody>{props.msg}</MDBModalBody>
 
             <MDBModalFooter>
               <MDBBtn color='secondary' onClick={toggleShow}>

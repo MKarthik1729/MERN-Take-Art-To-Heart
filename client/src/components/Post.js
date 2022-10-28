@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Heart from "react-heart";
 import styles from "../Pages/Public.module.css";
 import { ThreeDots } from "react-bootstrap-icons";
+import { UserContext } from "../context/Context";
 import PopUp from "./Modal/PopUp";
 
 const Post = (props) => {
@@ -12,8 +13,10 @@ const Post = (props) => {
     isLiked((like) => !like);
   };
 
+  const { user } = useContext(UserContext);
+
   return (
-    <div key={props.data.id} className={styles.card}>
+    <div className={styles.card}>
       <div className={styles.topLine}>
         <img src={props.data.icon} alt="profile" className={styles.icon} />
         <h6>{props.data.name}</h6>
@@ -34,8 +37,12 @@ const Post = (props) => {
       />
       {showOptions && (
         <ul className={styles.adOptions}>
-          <li>Delete this post</li>
-          <li>Blacklist this user</li>
+          {user.role === "admin" && (
+            <>
+              <li onClick={() => props.delete(props.data.id)}>Delete this post</li>
+              <li>Blacklist this user</li>
+            </>
+          )}
           <li>Block this user</li>
         </ul>
       )}

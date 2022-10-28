@@ -5,8 +5,6 @@ import { ExclamationCircle } from "react-bootstrap-icons";
 import styles from "./Login.module.css";
 import axios from "axios";
 
-const base_URL = "http://localhost:4000/";
-
 function validateEmail(input) {
   var validRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -35,8 +33,7 @@ function Login() {
     password: false,
   });
 
-  const {setUser} = useContext(UserContext);
-
+  const { setUser} = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,15 +48,21 @@ function Login() {
       return;
     }
     axios
-      .post(`${base_URL}user/login`, {
+      .post(`/user/login`, {
         useremail: mail,
         password,
       })
       .then((res) => {
         console.log(res);
-        if(res.status === 200){
-          setUser(res.data);
-          navigate('/')
+        if (res.status === 200) {
+          if (res.data.msg === "Login Success") {
+            setUser({
+              role: res.data.data.role,
+              user: res.data.data,
+              loggedIn: true,
+            });
+            navigate("/");
+          }
         }
       });
   };
