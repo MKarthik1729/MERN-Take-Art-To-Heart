@@ -8,7 +8,10 @@ router.post("/register", async (req, res) => {
   user
     .save()
     .then((data) => {
-      res.send(data);
+      res.send({
+        data: result,
+        msg: "Register Success",
+      });
       console.log(data);
     })
     .catch((err) => {
