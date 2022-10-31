@@ -1,0 +1,120 @@
+.home{
+    background-image: url('../Assets/pencil.jpg');
+    background-size: 100vw 100vh;
+    background-attachment: scroll;
+    margin-top: 0;
+    display: flex;
+    height: 100vh;
+    padding-right: 40px;
+    padding-top: 20px;
+    justify-content: space-between;
+}
+.header{
+    display: inline-block;
+    margin-top: 20vh;
+    padding: 0 30px;
+}
+.header h1{
+    letter-spacing: 5px;
+    font-size: 3rem;
+    line-height: 90px;
+    animation: bounce;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;    
+}
+.header h3{
+    letter-spacing: 3px;
+    font-size: 1.5rem;
+    animation: move;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    margin-bottom: 30px;
+}
+@keyframes bounce{
+    0%{
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    80%{
+        transform: translateX(10px);
+        opacity: 0.8;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes move{
+    0%{
+        transform: translateX(30px);
+        opacity: 0;
+    }
+    80%{
+        transform: translateX(-10px);
+        opacity: 0.8;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+.header button{
+    background-color: rgb(21, 218, 218);
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    transition: 0.3s ease-out;
+}
+.header button:hover{
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px 8px rgb(21, 218, 218, 0.6);
+}
+.imagesBox{
+    height: 25%;
+    width: 25%;
+    animation: front;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+}
+.imagesBox img{
+    height: 100%;
+    width: 100%;
+}
+@keyframes front{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.line{
+    display: flex;
+    justify-content: center;
+}
+.right{
+    margin: 100px;
+    margin-right: 40px;
+    margin-bottom: 0;
+    transform: rotate(20deg);
+}
+.left{
+    margin-top: 30px;
+    margin-bottom: 0;
+    transform: rotate(-20deg);
+}
+.extra{
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.8), rgba(255, 215, 0, 0.6)), url(https://img.freepik.com/free-photo/maple-leaf-border-background-orange-watercolor-autumn-season_53876-128735.jpg?w=2000);
+}
+.extraHeader{
+    margin-top: 10%;
+    margin-right: 5%;
+    float: right;
+}
